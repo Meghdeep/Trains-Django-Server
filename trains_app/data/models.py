@@ -19,7 +19,7 @@ class User(models.Model):
         return '%s - %s'%(str(self.user_id),str(self.name))
 
 class Station(models.Model):
-    station_id = models.CharField(primary_key=True, max_length=200)
+    station_id = models.AutoField(primary_key=True)
     station_name = models.CharField(max_length=200)
     def __str__(self):
         return '%s - %s'%(str(self.station_id),str(self.station_name))
