@@ -13,6 +13,12 @@ def user_table( request, name_id_in ):
     return_value = serializers.serialize("json", User.objects.filter( user_id = name_id_in ) )
     return HttpResponse(return_value)
 
+#def auth_lookup( request, name_in, pass_in ):
+#    n = name_in.replace("_", " ")
+#    p = pass_in
+#    return_value = serializers.serialize("json", User.objects.filter( name = n and password = p ) )
+#    return HttpResponse(return_value)
+
 #def test(request):
 #    r = requests.get( "http://seproject.site11.com/seProject/ShortestDistance.php?longitude=93.5348466&latitude=26.11111111&id=1" )
 #    #urllib.request.urlopen('http://seproject.site11.com/seProject/ShortestDistance.php?longitude=93.5348466&latitude=26.11111111&id=1')
@@ -48,20 +54,65 @@ def create_new_user( request, name_in, phone_number_in, user_password_in, email_
     User.objects.create(user_id=phone_number_in, name=name_in, phone_number=phone_number_in, user_password=user_password_in, email=email_in )
     return HttpResponse()
 
-def station_lister( request, pnr_in ):
-    os.system("python scraper.py " + str(pnr_in) )
+def station_add( request, station_name_in ):
+    name = station_name_in.replace("_", " ")
+    if( Station.objects.filter( station_name = name ).exists() ):
+        return HttpResponse(status=490)
+    else:
+        Station.objects.create(station_name = name)
+        return HttpResponse()
+
+def scrape_run(request, pnr):
+    import subprocess
+    p = subprocess.Popen(['python2.7', '/home/Meghdeep/train_project/trains_app/data/scraper.py', str(pnr) ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     return HttpResponse()
+
+def displayer(request ):
+    import json
+    train_file = open("/home/Meghdeep/train_project/trains_app/data/train_route.txt", "r")
+    output = json.loads(train_file.read())
+    if( str(train_file.read()) == '[]' ):
+        train_file.close()
+        return HttpResponse("Nothing Here !")
+    else:
+        train_file.close()
+        return HttpResponse(json.dumps(output))
+
 
 def station_list(request, pnr):
     import json
     from subprocess import call
     call(["python2.7", "scraper.py", str(pnr)])
-    train_file = open("/home/Meghdeep/train_project/trains_app/data/train_route_mod.txt", "r")
+    train_file = open("/home/Meghdeep/train_project/trains_app/data/train_route.txt", "r")
     output = json.loads(train_file.read())
+    if( str(train_file.read()) != '[]' ):
+        for i in output:
+            if( Station.objects.filter( station_name = i ).exists() ):
+                continue
+            else:
+                Station.objects.create( station_name = i )
+    train_file.close()
     return HttpResponse(json.dumps(output))
+
 
 # WITNESS THE GRAVEYARD OF STUFF THAT WAS ATTEMPTED TO GET THIS FUCKING THING TO WORK -.-''
 # AND IT'S NOT EVEN A COMPREHENSIVE LIST OF ALL THE STUFF THAT WAS ATTEMPTED >_<
+
+#def station_list(request, pnr):
+#    import json
+#    from subprocess import call
+#    call(['python2.7', 'scraper.py', str(pnr)])
+#    train_file = open("/home/Meghdeep/train_project/trains_app/data/train_route.txt", "r")
+#    output = json.loads(train_file.read())
+#    if(train_file.read() != '[]'):
+#        for i in output:
+#            if( Station.objects.filter( station_name = i ).exists() ):
+#                Station.objects.create( station_name = i )
+#    train_file.close()
+#    return HttpResponse(json.dumps(output))
+
+#   http://meghdeep.pythonanywhere.com/data/station_list/4519282568/
+
     #from subprocess import call
     #call(["python2.7", "scrapy_scraper.py", str(pnr)])
     #train_file = open("train_route_mod.txt", "r")
