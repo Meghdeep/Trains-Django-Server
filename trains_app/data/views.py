@@ -13,6 +13,13 @@ def user_table( request, name_id_in ):
     return_value = serializers.serialize("json", User.objects.filter( user_id = name_id_in ) )
     return HttpResponse(return_value)
 
+def user_table_complete( request, password ):
+    if not password == "quidaegis":
+        return HttpResponse("Unauthorized Access !!!")
+    return_value = serializers.serialize( "json", User.objects.all() )
+    return HttpResponse( return_value )
+
+
 #def auth_lookup( request, name_in, pass_in ):
 #    n = name_in.replace("_", " ")
 #    p = pass_in
@@ -78,6 +85,16 @@ def displayer(request ):
         train_file.close()
         return HttpResponse(json.dumps(output))
 
+def status(request, pnr, station_name_in):
+    import json
+    from subprocess import call
+    name = station_name_in.replace("_", " ")
+    name = name.replace(" dot", ".")
+    call(["python2.7", "last_seen.py", str(pnr), str(name)])
+    last_seen_file = open("/home/Meghdeep/train_project/trains_app/data/train_last_seen.txt", "r")
+    output = json.loads(last_seen_file.read())
+    last_seen_file.close()
+    return HttpResponse(json.dumps(output))
 
 def station_list(request, pnr):
     import json

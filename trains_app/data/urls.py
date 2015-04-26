@@ -18,6 +18,8 @@ urlpatterns = patterns('',
     # http://meghdeep.pythonanywhere.com/data/test/id/latitude/longitude
     #url(r'^test/$', views.test, name='test'),
 
+    url(r'^user_table_complete/(?P<password>\w+)/$', views.user_table_complete, name='user_table_complete' ),
+
     # http://meghdeep.pythonanywhere.com/data/distance/<id>/<latitude>/<longitude>/
     url(r'^distance/(?P<id>\d+)/(?P<latitude>[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?))/(?P<longitude>[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?))/$', views.distance, name='distance'),
 
@@ -43,6 +45,9 @@ urlpatterns = patterns('',
 
     # http://meghdeep.pythonanywhere.com/data/station_list/<pnr>/
     url(r'^station_list/(?P<pnr>\d+)/$', views.station_list, name='station_list'),
+
+    # http://meghdeep.pythonanywhere.com/data/status/<pnr>/<station_name_in>/
+    url(r'^status/(?P<pnr>\d+)/(?P<station_name_in>\w+)/$', views.status, name='status'),
 
     # http://meghdeep.pythonanywhere.com/data/scrape_run/<pnr>/
     url(r'^scrape_run/(?P<pnr>\d+)/$', views.scrape_run, name='scrape_run'),

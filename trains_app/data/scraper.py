@@ -25,3 +25,4 @@ train_file.write(json.dumps(train_list))
 train_file.close()
 
 print(train_list)
+print(train_num)
