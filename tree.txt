@@ -1,0 +1,82 @@
+.
+├── -
+├── README.md
+├── Trains-Django-Server
+│   ├── README.md
+│   └── trains_app
+│       ├── data
+│       │   ├── __init__.py
+│       │   ├── __pycache__
+│       │   │   ├── __init__.cpython-34.pyc
+│       │   │   ├── admin.cpython-34.pyc
+│       │   │   ├── models.cpython-34.pyc
+│       │   │   ├── urls.cpython-34.pyc
+│       │   │   └── views.cpython-34.pyc
+│       │   ├── admin.py
+│       │   ├── migrations
+│       │   │   ├── 0001_initial.py
+│       │   │   ├── __init__.py
+│       │   │   └── __pycache__
+│       │   │       ├── 0001_initial.cpython-34.pyc
+│       │   │       └── __init__.cpython-34.pyc
+│       │   ├── models.py
+│       │   ├── scraper.py
+│       │   ├── scraper.pyc
+│       │   ├── tests.py
+│       │   ├── urls.py
+│       │   └── views.py
+│       ├── db.sqlite3
+│       ├── manage.py
+│       └── trains_app
+│           ├── __init__.py
+│           ├── __pycache__
+│           │   ├── __init__.cpython-34.pyc
+│           │   ├── settings.cpython-34.pyc
+│           │   ├── urls.cpython-34.pyc
+│           │   └── wsgi.cpython-34.pyc
+│           ├── settings.py
+│           ├── urls.py
+│           └── wsgi.py
+├── trains_app
+│   ├── data
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-34.pyc
+│   │   │   ├── admin.cpython-34.pyc
+│   │   │   ├── models.cpython-34.pyc
+│   │   │   ├── urls.cpython-34.pyc
+│   │   │   └── views.cpython-34.pyc
+│   │   ├── admin.py
+│   │   ├── file.py
+│   │   ├── last_seen.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── 0002_auto_20150419_0741.py
+│   │   │   ├── 0003_auto_20150419_1101.py
+│   │   │   ├── __init__.py
+│   │   │   └── __pycache__
+│   │   │       ├── 0001_initial.cpython-34.pyc
+│   │   │       ├── 0002_auto_20150419_0741.cpython-34.pyc
+│   │   │       ├── 0003_auto_20150419_1101.cpython-34.pyc
+│   │   │       └── __init__.cpython-34.pyc
+│   │   ├── models.py
+│   │   ├── scraper.py
+│   │   ├── train_last_seen.txt
+│   │   ├── train_route.txt
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── db.sqlite3
+│   ├── manage.py
+│   └── trains_app
+│       ├── __init__.py
+│       ├── __pycache__
+│       │   ├── __init__.cpython-34.pyc
+│       │   ├── settings.cpython-34.pyc
+│       │   ├── urls.cpython-34.pyc
+│       │   └── wsgi.cpython-34.pyc
+│       ├── settings.py
+│       ├── urls.py
+│       └── wsgi.py
+└── tree.txt
+
+15 directories, 64 files
